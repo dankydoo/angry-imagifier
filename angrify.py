@@ -4,9 +4,8 @@ from util.angryimage import AngryImage
 
 
 def main(args):
-    angry = AngryImage('batman.png', max_anger_x=40, max_anger_y=40)
+    angry = AngryImage('tom.jpeg', max_anger_x=10, max_anger_y=10)
     angry.angrify()
-    pass
 
 
 if __name__ == '__main__':
