@@ -34,7 +34,8 @@ class AngryImage(object):
                 # image = image.convert('RGB')
                 images.append(image)
 
-            images[0].save('test.gif', save_all=True, append_images=images, duration=10, loop=0, format='GIF',
+            images[0].save('test.gif', save_all=True, append_images=images, duration=self.frame_delay, loop=0,
+                           format='GIF',
                            optimize=True)
 
         except FileNotFoundError as ex:
