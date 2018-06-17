@@ -2,3 +2,4 @@
 !batman.png
 test.gif
 *.bak
+util/__pycache__/*

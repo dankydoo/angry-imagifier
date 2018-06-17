@@ -15,7 +15,7 @@ class AngryImage(object):
         self.max_anger_x = max_anger_x
         self.max_anger_y = max_anger_y
 
-        self.image = Image.open(image_path)
+        self.original_image = Image.open(image_path)
 
         # self.image.show()
 
@@ -23,26 +23,19 @@ class AngryImage(object):
 
     def angrify(self):
 
-        frame_count = 3
         images = []
         try:
-            for i in range(frame_count):
+            for i in range(self.frame_count):
                 anger = self.get_anger()
-                image = self.image.transform(self.image.size, Image.AFFINE, anger)
+                image = self.original_image.transform(self.original_image.size, Image.AFFINE, anger)
                 # image = image.convert('RGB')
-                image.save(f'new{i}.png')
-                # image.show()
                 images.append(image)
 
-            print('done')
-
             images[0].save('test.gif', save_all=True, append_images=images, duration=10, loop=0, format='GIF')
-            # angry_image = Image.open('test.gif')
 
         except FileNotFoundError as fnfe:
             print(fnfe)
             raise fnfe
-            pass
 
     def get_anger(self, anger_x=None, anger_y=None):
 
@@ -53,11 +46,4 @@ class AngryImage(object):
             anger_y = random.randrange(-1 * self.max_anger_y, self.max_anger_y, 1)
 
         anger_adjust = (1, 0, anger_x, 0, 1, anger_y)
-
-        # a = 1
-        # b = 0
-        # anger_x = anger_x  # left/right (i.e. 5/-5)
-        # d = 0
-        # e = 1
-        # anger_y = anger_y  # up/down (i.e. 5/-5)
         return anger_adjust

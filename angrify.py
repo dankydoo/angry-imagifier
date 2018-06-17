@@ -1,8 +1,7 @@
 import sys
 
-from PIL import Image
-
 from util.angryimage import AngryImage
+
 
 def main(args):
     angry = AngryImage('batman.png', max_anger_x=40, max_anger_y=40)
