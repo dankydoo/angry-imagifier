@@ -35,7 +35,7 @@ class AngryImage(object):
         # images.append(self.original_image)
         try:
             for i in range(self.frame_count):
-                anger = self.get_anger()
+                anger = self.get_anger(self.max_anger_x, self.max_anger_y)
                 image = self.original_image.transform(self.original_image.size, Image.AFFINE, anger)
                 if slackify:
                     image = image.resize(size=(128, 128))
