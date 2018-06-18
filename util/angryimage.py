@@ -20,7 +20,7 @@ class AngryImage(object):
         file, ext = os.path.splitext(image_path)
         self.out_filename = 'angry_' + file + '.gif'
 
-        # self.original_image = Image.open(image_path).resize((128, 128))
+        self.original_image = Image.open(image_path).resize((128, 128))
 
         # self.image.show()
 
