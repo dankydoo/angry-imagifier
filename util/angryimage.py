@@ -1,3 +1,4 @@
+import os
 import random
 import shutil
 
@@ -16,13 +17,19 @@ class AngryImage(object):
         self.max_anger_x = max_anger_x
         self.max_anger_y = max_anger_y
 
-        self.original_image = Image.open(image_path).resize((128, 128))
+        file, ext = os.path.splitext(image_path)
+        self.out_filename = 'angry_' + file + '.gif'
+
+        # self.original_image = Image.open(image_path).resize((128, 128))
 
         # self.image.show()
 
         shutil.copy(self.image_path, self.image_path + '.bak')
 
-    def angrify(self):
+    def angrify(self, out_filename=None, slackify=True, background_color=0xffffff):
+
+        if not out_filename:
+            out_filename = self.out_filename
 
         images = []
         # images.append(self.original_image)
@@ -30,11 +37,13 @@ class AngryImage(object):
             for i in range(self.frame_count):
                 anger = self.get_anger()
                 image = self.original_image.transform(self.original_image.size, Image.AFFINE, anger)
-                image = image.resize(size=(128, 128))
+                if slackify:
+                    image = image.resize(size=(128, 128))
+
                 # image = image.convert('RGB')
                 images.append(image)
 
-            images[0].save('test.gif', save_all=True, append_images=images, duration=self.frame_delay, loop=0,
+            images[0].save(out_filename, save_all=True, append_images=images, duration=self.frame_delay, loop=0,
                            format='GIF',
                            optimize=True)
 
