@@ -52,10 +52,12 @@ class AngryImage(object):
 
     def get_anger(self, anger_x=None, anger_y=None):
         if not anger_x:
-            anger_x = random.randrange(-1 * self.max_anger_x, self.max_anger_x, 1)
-
+            anger_x = self.max_anger_x
         if not anger_y:
-            anger_y = random.randrange(-1 * self.max_anger_y, self.max_anger_y, 1)
+            anger_y = self.max_anger_y
+
+        anger_x = random.randrange(-1 * anger_x, anger_x, 1)
+        anger_y = random.randrange(-1 * anger_y, anger_y, 1)
 
         anger_adjust = (1, 0, anger_x, 0, 1, anger_y)
         return anger_adjust

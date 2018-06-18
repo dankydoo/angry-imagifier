@@ -1,3 +1,5 @@
+angry_*.*
+.idea/
 **/*.png
 !batman.png
 test.gif
